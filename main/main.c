@@ -3,6 +3,7 @@
 #include "driver/gpio.h"
 #include "esp_err.h"
 #include "esp_rom_sys.h"
+#include <string.h>
 
 /*Pin definitions */
 #define UART_PORT UART_NUM_0
@@ -45,4 +46,5 @@ esp_err_t  uart_init(){
         return err;
     } 
     uart_driver_install(UART_PORT ,UART_RX_BUFF_Z , UART_TX_BUFF_Z , 10 , NULL , 0);
+    return ESP_OK;
 }

@@ -10,8 +10,9 @@
     "idf.openOcdConfigs": [
         "board/esp32-wrover-kit-3.3v.cfg"
     ],
-    "idf.port": "/dev/ttyS4",
+    "idf.port": "/dev/ttyUSB0",
     "idf.pythonBinPath": "/home/idriss/.espressif/python_env/idf5.3_py3.12_env/bin/python",
     "idf.toolsPath": "/home/idriss/.espressif",
-    "git.ignoreLimitWarning": true
+    "git.ignoreLimitWarning": true,
+    "idf.flashType": "UART"
 }
