@@ -14,5 +14,9 @@
     "idf.pythonBinPath": "/home/idriss/.espressif/python_env/idf5.3_py3.12_env/bin/python",
     "idf.toolsPath": "/home/idriss/.espressif",
     "git.ignoreLimitWarning": true,
-    "idf.flashType": "UART"
+    "idf.flashType": "UART",
+    "files.associations": {
+        "uart.h": "c"
+    },
+    "C_Cpp.errorSquiggles": "enabled"
 }
