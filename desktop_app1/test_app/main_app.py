@@ -1,9 +1,19 @@
 import sys
 import random
-import requests, os
+import requests, os,time
 from PySide6 import QtCore, QtWidgets, QtGui
 from PySide6.QtWidgets import QFileDialog, QLineEdit, QMessageBox
 from PySide6.QtCore import QRect, QPoint
+from paho.mqtt import client as mqtt_client
+
+broker = 'mqtt.eclipseprojects.io'
+port = 1883
+topic = "ota/esp"
+# Generate a Client ID with the publish prefix.
+client_id = f'publish-{random.randint(0, 1000)}'
+# username = 'emqx'
+# password = 'public'
+
 
 class MyWidget(QtWidgets.QWidget):
 
@@ -101,8 +111,49 @@ class MyWidget(QtWidgets.QWidget):
 
     @QtCore.Slot()
     def msg_mqtt_start(self):
-        #functionality mqtt publisher
-        return
+        try:
+            # Create MQTT client
+            client = mqtt_client.Client(client_id)
+            
+            def on_connect(client, userdata, flags, rc):
+                if rc == 0:
+                    print("Connected to MQTT Broker")
+                else:
+                    print(f"Failed to connect. Return code: {rc}")
+            
+            def on_publish(client, userdata, mid):
+                print("Message published")
+                client.disconnect()
+            
+            client.on_connect = on_connect
+            client.on_publish = on_publish
+            
+            client.connect(broker, port)
+            
+            client.loop_start()
+            
+            # Publish message
+            msg = "start"
+            try:
+                time.sleep(1)
+                result = client.publish(topic, msg)
+                
+                if result.rc == mqtt_client.MQTT_ERR_SUCCESS:
+                    print(f"Start is sending to ESP")
+                    QMessageBox.information(self, "MQTT", f"Start is sending to ESP")
+                else:
+                    print(f"Failed to send Start to ESP")
+                    QMessageBox.critical(self, "MQTT Error", "Failed to send Start to ESP")
+            
+            except Exception as e:
+                print(f"Publish error: {e}")
+                QMessageBox.critical(self, "MQTT Error", f"An error occurred: {str(e)}")
+            
+            client.loop_stop()
+        
+        except Exception as e:
+            print(f"MQTT Error: {e}")
+            QMessageBox.critical(self, "MQTT Error", f"Failed to send Start: {str(e)}")
 
 if __name__ == "__main__":
     app = QtWidgets.QApplication([])
