@@ -133,7 +133,7 @@ class MyWidget(QtWidgets.QWidget):
             client.loop_start()
             
             # Publish message
-            msg = "start"
+            msg:bool = 1
             try:
                 time.sleep(1)
                 result = client.publish(topic, msg)
