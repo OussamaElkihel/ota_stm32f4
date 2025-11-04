@@ -3,4 +3,5 @@
 cmake_minimum_required(VERSION 3.16)
 
 include($ENV{IDF_PATH}/tools/cmake/project.cmake)
-project(write_mult_mem_test)
+set(COMPONENTS main esp_wifi esp_http_client nvs_flash esp_netif spiffs mqtt)
+project(write_mem_stm_test1)
