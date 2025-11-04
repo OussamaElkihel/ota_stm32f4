@@ -1,6 +1,5 @@
 build/
-components/
+components/components/
 sdkconfig
-sdkconfig.ci
-sdkconfig.old
+sdk*
 .vscode/
