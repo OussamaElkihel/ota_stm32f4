@@ -4,7 +4,7 @@
 #include "esp_http_client.h"
 
 //Dropbox access token is defined here 
-#define DROPBOX_TOKEN "Bearer sl.CEv0PFSetXMtOI-0bOkJ3JyUCQoMDOi3DIzyy_NnzcZMtz54MHFp5o-6m8Z0YDyH5aMpcdnAFj7edCKfW67pd23di4yvSxLCxq2DyDfdN2NEJHXTBR5OY2l3YT3nUXZnCdaThX7bj3kZ" 
+#define DROPBOX_TOKEN "--------------DROPBOX TOKEN HERE !!--------------" 
 //Dropbox file path is defined here
 #define DROPBOX_FILE_PATH "/led_test0.txt"
 
